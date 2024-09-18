@@ -7,12 +7,14 @@ public class Biblioteca {
     private LinkedList<Estudiante> estudiantes;
     private LinkedList<Prestamo> prestamos;
     private LinkedList<Libro> libros;
+    private LinkedList<Bibliotecario> bibliotecarios;
 
     public Biblioteca(String nombre) {
         this.nombre = nombre;
         estudiantes = new LinkedList<>();
         prestamos = new LinkedList<>();
         libros = new LinkedList<>();
+        bibliotecarios = new LinkedList<>();
     }
 
     /*
@@ -73,6 +75,17 @@ public class Biblioteca {
     public void setLibros(LinkedList<Libro> libros) {
         this.libros = libros;
     }
+    
+    public LinkedList<Bibliotecario> getBibliotecarios() {
+        return bibliotecarios;
+    }
+
+    public void setBibliotecarios(LinkedList<Bibliotecario> bibliotecarios) {
+        this.bibliotecarios = bibliotecarios;
+    }
+
+
+    
 
     @Override
     public String toString() {

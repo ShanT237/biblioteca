@@ -1,20 +1,24 @@
 package co.edu.uniquindio.poo;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Prestamo {
     private double costo;
+    private int codigo;
     private LocalDate fechaprestamo;
     private LocalDate fechaentrega;
     private Estudiante estudiante;
-    private Libro libro;
+    private List<DetallePrestamo> detalles;
 
-    public Prestamo(double costo, LocalDate fechaprestamo, LocalDate fechaentrega, Estudiante estudiante, Libro libro) {
-        this.costo = costo;
+    public Prestamo(double costo, int codigo, LocalDate fechaprestamo, LocalDate fechaentrega, Estudiante estudiante, Libro libro) {
+        this.costo = 0;
+        this.codigo = codigo;
         this.fechaprestamo = fechaprestamo;
         this.fechaentrega = fechaentrega;
         this.estudiante = estudiante;
-        this.libro = libro;
+        this.detalles = new LinkedList<>();
     }
 
     public double getCosto() {
@@ -23,6 +27,14 @@ public class Prestamo {
 
     public void setCosto(double costo) {
         this.costo = costo;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public LocalDate getFechaprestamo() {
@@ -37,8 +49,8 @@ public class Prestamo {
         return fechaentrega;
     }
 
-    public void setFechaentrega(LocalDate fechaentraga) {
-        this.fechaentrega = fechaentraga;
+    public void setFechaentrega(LocalDate fechaentrega) {
+        this.fechaentrega = fechaentrega;
     }
 
     public Estudiante getEstudiante() {
@@ -49,20 +61,25 @@ public class Prestamo {
         this.estudiante = estudiante;
     }
 
-    public Libro getLibro() {
-        return libro;
+    public List<DetallePrestamo> getDetalles() {
+        return detalles;
     }
 
-    public void setLibro(Libro libro) {
-        this.libro = libro;
+    public void setDetalles(List<DetallePrestamo> detalles) {
+        this.detalles = detalles;
     }
 
     @Override
     public String toString() {
-        return "Prestamo: costo " + costo + ", fechaprestamo " + fechaprestamo + ", fechaentrega " + fechaentrega
-                + ", estudiante " + estudiante + ", libro " + libro + ".";
+        return "Prestamo: costo " + costo + ", codigo " + codigo + ", fechaprestamo " + fechaprestamo
+                + ", fechaentrega " + fechaentrega + ", estudiante " + estudiante + ", detalles " + detalles + ".";
     }
 
+
+    
+
+    
+    
     
 
     
