@@ -10,15 +10,20 @@ public class Prestamo {
     private LocalDate fechaprestamo;
     private LocalDate fechaentrega;
     private Estudiante estudiante;
+    private Bibliotecario bibliotecario;
     private List<DetallePrestamo> detalles;
 
-    public Prestamo(double costo, int codigo, LocalDate fechaprestamo, LocalDate fechaentrega, Estudiante estudiante, Libro libro) {
+    public Prestamo(double costo, int codigo, LocalDate fechaprestamo, LocalDate fechaentrega, Estudiante estudiante, Libro libro, Bibliotecario bibliotecario) {
         this.costo = 0;
         this.codigo = codigo;
         this.fechaprestamo = fechaprestamo;
         this.fechaentrega = fechaentrega;
         this.estudiante = estudiante;
         this.detalles = new LinkedList<>();
+    }
+
+    public void crearPrestamo(){
+        
     }
 
     public double getCosto() {

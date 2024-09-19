@@ -24,12 +24,7 @@ public class Libro {
     /*
      * Metodos principales
      */
-    public String consultatDatosLibroString(String codigo){
-        String texto = "";
 
-        return texto;
-
-    }
 
     public String getCodigo() {
         return codigo;
