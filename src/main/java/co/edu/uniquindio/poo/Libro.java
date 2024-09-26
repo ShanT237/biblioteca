@@ -25,7 +25,9 @@ public class Libro {
      * Metodos principales
      */
 
-
+     public void d(){
+            
+     }
     public String getCodigo() {
         return codigo;
     }
