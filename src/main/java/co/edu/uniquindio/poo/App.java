@@ -6,8 +6,11 @@ import java.time.LocalDate;
  * Hello world!
  *
  */
+
+
 public class App {
     public static void main(String[] args) {
+
         Biblioteca biblioteca = new Biblioteca("Biblioteca Euclidiana");
 
         Autor autor2 = new Autor("Agatha Christie", "12345678", "agatha@example.com", 123456789, "1890/09/15", "Britanica");
@@ -38,5 +41,7 @@ public class App {
         Libro libro10 = new Libro("10N234T", "978-0-06-295728-1", autor2, "William Collins", "Diez negritos",
                 LocalDate.of(1939, 11, 6), 4);
 
+       
     }
+
 }
