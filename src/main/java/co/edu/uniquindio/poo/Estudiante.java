@@ -1,56 +1,38 @@
 package co.edu.uniquindio.poo;
 
-public class Estudiante {
-    private String nombre;
-    private String cedula;
-    private String telefono;
-    private String correo;
+import java.util.Collection;
+import java.util.LinkedList;
 
-    public Estudiante(String nombre, String cedula, String telefono, String correo) {
-        this.nombre = nombre;
-        this.cedula = cedula;
-        this.telefono = telefono;
-        this.correo = correo;
+public class Estudiante extends Persona {
+
+    private int edad;
+    private LinkedList<Prestamo> prestamos;
+
+    public Estudiante(String nombre, String cedula, String correo, int telefono, int edad) {
+        super(nombre, cedula, correo, telefono);
+        this.edad = edad;
+        prestamos = new LinkedList<>();
     }
 
-    public String getNombre() {
-        return nombre;
+    public int getEdad() {
+        return edad;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
-    public String getCedula() {
-        return cedula;
+    public LinkedList<Prestamo> getPrestamos() {
+        return prestamos;
     }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setPrestamos(LinkedList<Prestamo> prestamos) {
+        this.prestamos = prestamos;
     }
 
     @Override
     public String toString() {
-        return "Estudiante: nombre " + nombre + ", cedula " + cedula + ", telefono " + telefono + ", correo " + correo
-                + ".";
+        return "Estudiante: Edad " + edad + ", Prestamos=" + prestamos + ".";
     }
 
-    
-    
 }

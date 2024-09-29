@@ -1,20 +1,15 @@
 package co.edu.uniquindio.poo;
 
 public class DetallePrestamo {
-    private Libro libro;
+
     private int cantidad;
+    private double subTotal;
+    private Libro libro;
 
-    public DetallePrestamo(Libro libro, int cantidad) {
-        this.libro = libro;
-        this.cantidad = cantidad;
-    }
-
-    public Libro getLibro() {
-        return libro;
-    }
-
-    public void setLibro(Libro libro) {
-        this.libro = libro;
+    public DetallePrestamo(int cantidad, Libro libro){
+        this.cantidad=cantidad;
+        this.libro=libro;
+        this.subTotal=0;
     }
 
     public int getCantidad() {
@@ -25,13 +20,26 @@ public class DetallePrestamo {
         this.cantidad = cantidad;
     }
 
-    @Override
-    public String toString() {
-        return "DetallePrestamo: libro " + libro + ", cantidad " + cantidad + ".";
+    public double getSubTotal() {
+        return subTotal;
     }
 
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
+    }
 
-    
+    public Libro getLibro() {
+        return libro;
+    }
+
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
+
+    @Override
+    public String toString() {
+        return "DetallePrestamo: Cantidad " + cantidad + ", subTotal " + subTotal + ", libro " + libro + ".";
+    }
 
     
     
