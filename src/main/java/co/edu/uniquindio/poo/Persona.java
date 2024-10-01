@@ -1,5 +1,8 @@
 package co.edu.uniquindio.poo;
 
+/*
+ * Clase abstracta Persona
+ */
 public class Persona {
 
     private String nombre, cedula, correo;
@@ -46,7 +49,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona: Nombre " + nombre + ", Cedula " + cedula + ", Correo " + correo + ",  Telefono " + telefono
+        return "Persona: nombre " + nombre + ", cedula " + cedula + ", correo " + correo + ", telefono " + telefono
                 + ".";
     }
 

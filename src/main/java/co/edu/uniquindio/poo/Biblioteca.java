@@ -13,6 +13,9 @@ public class Biblioteca {
     private double ganancia;
     private int cantidadLibros;
 
+    /*
+     * Metodo constructor
+     */
     public Biblioteca(String nombre) {
         this.nombre = nombre;
         this.ganancia = 0;
@@ -30,8 +33,12 @@ public class Biblioteca {
     /*
      * Reportes
      */
-
-    public void totalLiquidacionBibliotecario() {
+    /*
+     * Calcula el total a pagar a los bibliotecarios: El metodo itera en la lista de
+     * bibliotecarios y hace uso del metodo calcularPagoBibliotecario para
+     * determinar el pago por individuo
+     */
+    public void totalPagoBibliotecarios() {
         double total = 0;
         for (Bibliotecario bibliotecario : bibliotecarios) {
             total += calcularPagoBibliotecario(bibliotecario);
@@ -41,6 +48,13 @@ public class Biblioteca {
         System.out.println(total);
     }
 
+    /*
+     * Calcula el pago por bibliotecario
+     * 
+     * @param el bibliotecario a calcular
+     * 
+     * @return el total a pagar al bibliotecario
+     */
     public double calcularPagoBibliotecario(Bibliotecario bibliotecario) {
         double totalComision = 0;
         for (Prestamo prestamo : bibliotecario.getPrestamos()) {
@@ -55,6 +69,11 @@ public class Biblioteca {
 
     }
 
+    /*
+     * Encuentra el estudiante con más prestamos e imprime su datos
+     * Se itera en la lista de estudiantes, se hace uso de dos variables para llevar
+     * un seguimiento
+     */
     public void estudianteConMasPrestamos() {
         Estudiante estudianteMax = null;
         int maxPrestamos = 0;
@@ -70,15 +89,19 @@ public class Biblioteca {
                 maxPrestamos = contador;
                 estudianteMax = estudiante;
             }
-            if (estudianteMax != null) {
-                System.out.println("El estudiante con más préstamos es:");
-                System.out.println(estudianteMax);
-            } else {
-                System.out.println("No hay estudiantes con préstamos.");
-            }
+        }
+
+        if (estudianteMax != null) {
+            System.out.println("El estudiante con más préstamos es:");
+            System.out.println(estudianteMax);
+        } else {
+            System.out.println("No hay estudiantes con préstamos.");
         }
     }
 
+    /*
+     * Se imprime el total de ganancias de la biblioteca
+     */
     public void TotalGanancia() {
         System.out.println("La biblioteca tiene una ganancia de:");
         System.out.println(ganancia);
@@ -86,6 +109,14 @@ public class Biblioteca {
 
     /*
      * Metodos Libro
+     */
+
+    /*
+     * El metodo verifica que el registro del libro se repita
+     * 
+     * @param el libro a verificar
+     * 
+     * @return el
      */
     public boolean verificarLibro(Libro libro) {
         boolean sentinel = false;
@@ -101,6 +132,11 @@ public class Biblioteca {
 
     }
 
+    /*
+     * Metodo para agregar un Libro a la biblioteca
+     * 
+     * @param el libro a registrar
+     */
     public void agregarLibro(Libro libro) {
         if (verificarLibro(libro)) {
             System.out.println("No se puede agregar libro porque ya existe");
@@ -113,6 +149,13 @@ public class Biblioteca {
 
     }
 
+    /*
+     * Se busca un libro dado su codigo
+     * 
+     * @param el codigo del libro a buscar
+     * 
+     * @return el libro encontrado, o null si no se encuentra
+     */
     public Libro buscarLibro(String codigo) {
         for (Libro i : libros) {
             if (i.getCodigo().equals(codigo)) {
@@ -129,6 +172,13 @@ public class Biblioteca {
 
     }
 
+    /*
+     * Itera en la lista pretamos y se compara con el titulo de libro para asi
+     * contar la cantidad de prestamos en los que esta
+     * 
+     * @param el titulo del libro al cual se le quiere determinar la cantidad de
+     * prestamos
+     */
     public void cantidadPrestamosLibro(String titulo) {
         int contador = 0;
         for (Prestamo i : prestamos) {
@@ -150,10 +200,15 @@ public class Biblioteca {
         }
 
     }
+    /*
+     * Metodo para modificar un libro comparando su codigo su codigo
+     * 
+     * @param se recive el libro a modificar
+     */
 
-    public void modficarLibro(String codigo, Libro libro) {
+    public void modficarLibro(Libro libro) {
         for (int i = 0; i < libros.size(); i++) {
-            if (libros.get(i).getCodigo().equals(codigo)) {
+            if (libros.get(i).getCodigo().equals(libro.getCodigo())) {
                 if (libros.get(i).isEstadoPrestamos()) {
                     System.out.println("No se puede modificar el libro porque se encuentra activo en prestamos");
                     return;
@@ -169,20 +224,28 @@ public class Biblioteca {
         System.out.println("El libro no se pudo encontrar");
 
     }
+    /*
+     * Se muestra el catalo de libros de la biblioteca
+     */
 
     public void mostrarCatalogo() {
         System.out.println("Catalogo ");
         for (Libro i : libros) {
             System.out.println(i);
+            System.out.println("");
 
         }
-        System.out.println("");
     }
 
     /*
      * Metodos Prestamo
      */
 
+    /*
+     * Se consulta los datos de un prestamo dado su codigo
+     * 
+     * @param se recibe el codigo del prestamo a consultar
+     */
     public void ConsultarDatosPrestamo(String codigo) {
         for (Prestamo prestamo : prestamos) {
             if (prestamo.getCodigo().equals(codigo)) {
@@ -194,35 +257,49 @@ public class Biblioteca {
         System.out.println("No se pudo encontrar el prestamo");
     }
 
+    /*
+     * Se registra el prestamo en la lista de la biblioteca
+     * 
+     * @param se recibe el prestamo que se debe registrar
+     */
     public void registrarPrestamo(Prestamo prestamo) {
         if (verificarPrestamo(prestamo.getCodigo())) {
             System.out.println("No se puede agregar registrar el prestamo porque ya existe un prestamo con el mismo codigo");
-
-        } else{
+        } else {
             prestamos.add(prestamo);
             prestamo.getBibliotecario().getPrestamos().add(prestamo);
             prestamo.getEstudiante().getPrestamos().add(prestamo);
-            System.out.printf("El prestamo fue registrado de forma exitosa");
-            ganancia += prestamo.calcularCosto();
+            ganancia += prestamo.calcularCosto();  
+            System.out.println("El prestamo fue registrado de forma exitosa");
         }
-
     }
 
+    /*
+     * Se verica que el prestamo no se repita
+     * 
+     * @param codigo del prestamo a verificar
+     */
     public boolean verificarPrestamo(String codigo) {
         boolean valor = false;
         for (Prestamo prestamo : prestamos) {
-            if(prestamo.getCodigo().equals(codigo)){
+            if (prestamo.getCodigo().equals(codigo)) {
                 valor = true;
                 break;
 
             }
 
-        } return valor;
+        }
+        return valor;
 
     }
 
     /*
      * Metodos Bibliotecario
+     */
+
+    /*
+     * Se verificar la cantidad de prestamo en total realizador por los
+     * bibliotecarios
      */
     public void cantidadPrestamosBibliotecarios() {
         System.out.println("Cantidad de prestamos realizados por los empleados");
@@ -236,6 +313,11 @@ public class Biblioteca {
         }
     }
 
+    /*
+     * Verifica que el bibliorio no se repita usando el atributo cedulas
+     * 
+     * @retun se retorna verdadero o falso dependiendo la situación
+     */
     public boolean verificarBibliotecario(Bibliotecario bibliotecario) {
         boolean sentinel = false;
         for (Bibliotecario i : bibliotecarios) {
@@ -250,6 +332,11 @@ public class Biblioteca {
 
     }
 
+    /*
+     * Metodo para agregar bibliotecario
+     * 
+     * @param el bibliotecario a agregar
+     */
     public void agregarBibliotecario(Bibliotecario bibliotecario) {
         if (verificarBibliotecario(bibliotecario)) {
             System.out.println("No se puede agregar el bibliotecario porque ya existe");
@@ -263,7 +350,13 @@ public class Biblioteca {
     /*
      * Metodos Estudiantes
      */
-
+    /*
+     * Metodo para verificar que un estudiante no se repita
+     * 
+     * @param estudiante
+     * 
+     * @return un verdadero o falso
+     */
     public boolean verificarEstudiante(Estudiante estudiante) {
         boolean sentinel = false;
         for (Estudiante i : estudiantes) {
@@ -278,6 +371,11 @@ public class Biblioteca {
 
     }
 
+    /*
+     * Metodo para agregar un estudiante
+     * 
+     * @param el estudiante que se va agregar
+     */
     public void agregarEstudiante(Estudiante estudiante) {
         if (verificarEstudiante(estudiante)) {
             System.out.println("No se puede agregar el estudiante porque ya existe");
@@ -288,8 +386,19 @@ public class Biblioteca {
 
     }
 
+    /*
+     * Metodos Get, Set y Tostring
+     */
+
     public String getNombre() {
         return nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "Biblioteca: nombre " + nombre + ", estudiantes " + estudiantes + ", bibliotecarios " + bibliotecarios
+                + ", prestamos " + prestamos + ", libros " + libros + ", ganancia " + ganancia + ", cantidadLibros "
+                + cantidadLibros + ".";
     }
 
     public void setNombre(String nombre) {
@@ -342,13 +451,6 @@ public class Biblioteca {
 
     public void setCantidadLibros(int cantidadLibros) {
         this.cantidadLibros = cantidadLibros;
-    }
-
-    @Override
-    public String toString() {
-        return "Biblioteca: Nombre " + nombre + ", Estudiantes " + estudiantes + ", Bliotecarios " + bibliotecarios
-                + ", Prestamos " + prestamos + ", Libros " + libros + ", Ganancia " + ganancia + ", cantidadLibros "
-                + cantidadLibros + ".";
     }
 
 }

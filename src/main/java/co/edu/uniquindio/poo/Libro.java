@@ -11,6 +11,9 @@ public class Libro {
     private boolean estadoPrestamos;
     private int unidadesDisponibles;
 
+    /*
+     * Metodo contructor Libro
+     */
     public Libro(String codigo, String isbn, Autor autor, String editorial, String titulo, LocalDate fechaPublicacion,
             int unidadesDisponibles) {
         this.codigo = codigo;
@@ -40,14 +43,6 @@ public class Libro {
         this.isbn = isbn;
     }
 
-    public Autor getAutor() {
-        return autor;
-    }
-
-    public void setAutor(Autor autor) {
-        this.autor = autor;
-    }
-
     public String getEditorial() {
         return editorial;
     }
@@ -64,20 +59,20 @@ public class Libro {
         this.titulo = titulo;
     }
 
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
     public LocalDate getFechaPublicacion() {
         return fechaPublicacion;
     }
 
     public void setFechaPublicacion(LocalDate fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
-    }
-
-    public int getUnidadesDisponibles() {
-        return unidadesDisponibles;
-    }
-
-    public void setUnidadesDisponibles(int unidadesDisponibles) {
-        this.unidadesDisponibles = unidadesDisponibles;
     }
 
     public Enum<Estado> getEstado() {
@@ -96,11 +91,19 @@ public class Libro {
         this.estadoPrestamos = estadoPrestamos;
     }
 
+    public int getUnidadesDisponibles() {
+        return unidadesDisponibles;
+    }
+
+    public void setUnidadesDisponibles(int unidadesDisponibles) {
+        this.unidadesDisponibles = unidadesDisponibles;
+    }
+
     @Override
     public String toString() {
-        return "Libro: Codigo " + codigo + ", ISBN" + isbn + ", Autor " + autor + ", Editorial " + editorial
-                + ", Titulo " + titulo + ", Fecha de Publicacion " + fechaPublicacion + ", Estado " + estado
-                + ", Unidades Disponibles " + unidadesDisponibles + ".";
+        return "Libro: codigo " + codigo + ", isbn " + isbn + ", editorial " + editorial + ", titulo " + titulo
+                + ", autor " + autor + ", fechaPublicacion " + fechaPublicacion + ", estado " + estado
+                + ", estadoPrestamos " + estadoPrestamos + ", unidadesDisponibles " + unidadesDisponibles + ".";
     }
 
 }

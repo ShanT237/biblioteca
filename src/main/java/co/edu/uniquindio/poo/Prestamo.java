@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.LinkedList;
 
+/*
+ * Clase Prestamo, este cuenta con fecha de prestamo y fecha entraga, un costo por dia, codigo, estudiante, bibliotecario y una lista de detalles prestamo
+ */
 public class Prestamo {
 
     private LocalDate fechaPrestamo, fechaEntrega;
@@ -13,6 +16,9 @@ public class Prestamo {
     private Bibliotecario bibliotecario;
     private LinkedList<DetallePrestamo> detallePrestamos;
 
+    /*
+     * Metodo constructor
+     */
     public Prestamo(LocalDate fechaPrestamo, LocalDate fechaEntrega, double costoDia, String codigo,
             Estudiante estudiante, Bibliotecario bibliotecario) {
         this.fechaPrestamo = fechaPrestamo;
@@ -24,14 +30,19 @@ public class Prestamo {
         detallePrestamos = new LinkedList<>();
     }
 
-
-    public void agregarLibroPrestamo(DetallePrestamo detalles){
+    /*
+     * Se agrega detallePrestamo a la lista de detallesPrestamo
+     * 
+     * @param recibe detalles prestamo para agregar a la lista
+     */
+    public void agregarDetallePrestamo(DetallePrestamo detalles) {
         int nuevaCantidad = detalles.getLibro().getUnidadesDisponibles() - detalles.getCantidad();
-        if(nuevaCantidad < 0){
-            System.out.println("No se puede llevar a cabo la operación porque la cantidad de libros pedidos excede la disponible");
+        if (nuevaCantidad < 0) {
+            System.out.println(
+                    "No se puede llevar a cabo la operación porque la cantidad de libros pedidos excede la disponible");
             return;
-        } else{
-            if(nuevaCantidad == 0){
+        } else {
+            if (nuevaCantidad == 0) {
                 detalles.getLibro().setEstado(Estado.AGOTADO);
 
             }
@@ -42,19 +53,29 @@ public class Prestamo {
         }
     }
 
-    public void entregarPrestamo(){
+    /*
+     * Metodo para entragar el prestamo con su costo
+     * Se hace uso del metodo calcularCosto
+     */
+    public void entregarPrestamo() {
         System.out.println("El costo total de su prestamo es de:");
         System.out.println(calcularCosto());
     }
 
-    public double calcularCosto(){
+    /*
+     * El metodo opera la cantidad de dias, el costo por dia y los subtotales
+     */
+    public double calcularCosto() {
         int dias = calcularDias();
         double subTotales = calcularSubtotales();
         return dias * costoDia * subTotales;
 
     }
 
-    public int calcularDias(){
+    /*
+     * Metodo para calcular los dias
+     */
+    public int calcularDias() {
         int dias = 0;
         LocalDate fechaInicio = fechaPrestamo;
         while (fechaInicio.isBefore(fechaEntrega)) {
@@ -64,15 +85,21 @@ public class Prestamo {
         }
         return dias;
     }
-    public double calcularSubtotales(){
+
+    /*
+     * Metodo para calcular sub totales
+     */
+    public double calcularSubtotales() {
         double totalSubTotales = 0;
         for (DetallePrestamo i : detallePrestamos) {
             totalSubTotales += i.getSubTotal();
-            
-            
+
         }
         return totalSubTotales;
     }
+    /*
+     * Metodos Get, Set y ToString
+     */
 
     public LocalDate getFechaPrestamo() {
         return fechaPrestamo;
@@ -130,14 +157,11 @@ public class Prestamo {
         this.detallePrestamos = detallePrestamos;
     }
 
-   
     @Override
     public String toString() {
-        return "Prestamo: Fecha de Prestamo " + fechaPrestamo + ", Fecha de Entrega " + fechaEntrega + ", Costo por Dia " + costoDia
-                + ", Codigo " + codigo + ", Estudiante " + estudiante + ", Bibliotecario " + bibliotecario
+        return "Prestamo: fechaPrestamo " + fechaPrestamo + ", fechaEntrega " + fechaEntrega + ", costoDia " + costoDia
+                + ", codigo " + codigo + ", estudiante " + estudiante + ", bibliotecario " + bibliotecario
                 + ", detallePrestamos " + detallePrestamos + ".";
     }
-
-
 
 }
